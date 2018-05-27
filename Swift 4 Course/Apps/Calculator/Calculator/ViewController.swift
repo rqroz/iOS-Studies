@@ -32,11 +32,11 @@ class ViewController: UIViewController {
         guard let number = Float(numberLabel.text!) else { return }
         
         if sender.tag == 0 {
-            // call equality
             equality(currentNumber: number)
         } else if sender.tag > 0 && sender.tag < 5 {
+            let op = lastOperation ?? sender.tag
+            performOperations(operationIdentifier: op, currentNumber: number)
             lastOperation = sender.tag
-            performOperations(operationIdentifier: sender.tag, currentNumber: number)
         }
     }
     
@@ -53,9 +53,9 @@ class ViewController: UIViewController {
     }
     
     func performOperations(operationIdentifier opID: Int, currentNumber number: Float){
-        
         guard let prevNumber = lastOperator, lastOperator != nil else {
             lastOperator = number
+            lastOperation = opID
             atStart = true
             return
         }
