@@ -14,10 +14,9 @@ class WeatherInfo {
     var location: LocationData
     var weather: WeatherData
     
-    var min_temperature: Float?
-    var max_temperature: Float?
+    var minTemperature: Int?
+    var maxTemperature: Int?
     var pressure: Float?
-    var seismicData: SeismicData?
     var windData: WindData?
     
     var weatherIconName: String = ""

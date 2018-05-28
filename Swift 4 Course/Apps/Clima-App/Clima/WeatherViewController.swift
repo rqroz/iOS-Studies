@@ -13,6 +13,7 @@ import SwiftyJSON
 
 class WeatherViewController: UIViewController, CLLocationManagerDelegate, ChangeCityDelegate {
     let locationManager = CLLocationManager()
+    var backgroundTimer: Timer!
     var weatherInfo: WeatherInfo? {
         didSet {
             if weatherInfo != nil {
@@ -21,20 +22,30 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         }
     }
 
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
-
+    @IBOutlet weak var maxTemperatureLabel: UILabel!
+    @IBOutlet weak var minTemperatureLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var pressureLabel: UILabel!
+    @IBOutlet weak var visibilityLabel: UILabel!
+    @IBOutlet weak var windLabel: UILabel!
+    
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCustomViews()
-        
+        view.backgroundColor = .black
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         startLocationManager()
+        
+        changeBackground()
+        backgroundTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(changeBackground), userInfo: nil, repeats: true)
     }
     
     
@@ -96,13 +107,31 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate, Change
         activityIndicator.startAnimating()
     }
     
+    @objc func changeBackground(){
+        let backgroundIndex: Int = Int(arc4random_uniform(7))
+        if let newBg = UIImage(named: "bg\(backgroundIndex)") {
+            backgroundImageView.alpha = 0.5
+            backgroundImageView.image = newBg
+            
+            UIView.animate(withDuration: 2, delay: 0, options: [.curveEaseIn], animations: {
+                self.backgroundImageView.alpha = 1
+            }, completion: nil)
+        }
+    }
+    
     //MARK: - UI Updates
     func updateUIWithWeatherData() {
         guard let info = weatherInfo else { return }
         
         weatherIcon.image = UIImage(named: info.currentWeatherIcon())
         cityLabel.text = info.location.city
-        temperatureLabel.text = "\(info.temperature)°"
+        temperatureLabel.text = "\(info.temperature)℃"
+        humidityLabel.text = "\(info.humidity)%"
+        
+        if let minTemp = info.minTemperature { minTemperatureLabel.text = "\(minTemp)℃" }
+        if let maxTemp = info.maxTemperature { maxTemperatureLabel.text = "\(maxTemp)℃" }
+        if let pressure = info.pressure { pressureLabel.text = "\(pressure) atm" }
+        if let windInfo = info.windData { windLabel.text = "\(windInfo.degrees)°, \(windInfo.speed) km/h" }
     }
     
     //MARK: - Location Manager Delegate Methods

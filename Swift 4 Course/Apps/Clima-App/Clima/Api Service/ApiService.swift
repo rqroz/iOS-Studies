@@ -33,19 +33,47 @@ class ApiService {
         
         return WeatherData(id: id, main: main, icon: icon, description: desc)
     }
+    
+    func generateWindDataFromJSON(_ json: JSON) -> WindData? {
+        guard let degrees = json["deg"].float, let speed = json["speed"].float else {
+            print("Could not resolve necessary data for WindData object...")
+            return nil
+        }
+        
+        let actualSpeed: Int = Int(speed * 3.6) // 3.6: Conversion constant from m/s to km/h
+        
+        return WindData(degrees: Int(degrees), speed: actualSpeed)
+    }
+    
+    
     func generateWeatherFromJSON(_ json: JSON) -> WeatherInfo? {
         guard let weatherData = generateWeatherDataFromJSON(json["weather"][0]) else { return nil }
         guard let cityName = json["name"].string, let lat = json["coord"]["lat"].float, let lon = json["coord"]["lon"].float else {
             print("Could not resolve necessary data for location object...")
             return nil
         }
-        guard let temperature = json["main"]["temp"].float, let humidity = json["main"]["humidity"].int else {
-            print("Could not resolve temperature or humidity...")
+        guard let temperature = json["main"]["temp"].float, let minTemp = json["main"]["temp_min"].float, let maxTemp = json["main"]["temp_max"].float, let humidity = json["main"]["humidity"].int, let pressure = json["main"]["pressure"].float else {
+            print(json)
+            print("Could not resolve temperature, humidity, or pressure...")
             return nil
         }
         
         let location = LocationData(city: cityName, latitude: lat, longitude: lon)
-        let celciusTemp: Int = Int(temperature - 273.15)
-        return WeatherInfo(weather: weatherData, location: location, temperature: celciusTemp, humidity: humidity)
+        
+        let kelvinConstant: Float = 273.15
+        let celciusTemp: Int = Int(temperature - kelvinConstant)
+        let celciusMinTemp: Int = Int(minTemp - kelvinConstant)
+        let celciusMaxTemp: Int = Int(maxTemp - kelvinConstant)
+        
+        let hpaTOatm: Float = 0.00098692326671601
+        let atmPressure: Float = pressure * hpaTOatm
+        
+        let wInfo = WeatherInfo(weather: weatherData, location: location, temperature: celciusTemp, humidity: humidity)
+        wInfo.minTemperature = celciusMinTemp
+        wInfo.maxTemperature = celciusMaxTemp
+        wInfo.pressure = atmPressure
+        wInfo.windData = generateWindDataFromJSON(json["wind"])
+        
+        return wInfo
     }
 }

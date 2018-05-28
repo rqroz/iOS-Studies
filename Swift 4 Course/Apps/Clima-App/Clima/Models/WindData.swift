@@ -10,9 +10,9 @@ import Foundation
 
 class WindData {
     let degrees: Int
-    let speed: Float
+    let speed: Int
     
-    init(degrees: Int, speed: Float) {
+    init(degrees: Int, speed: Int) {
         self.degrees = degrees
         self.speed = speed
     }

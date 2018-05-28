@@ -17,10 +17,10 @@
 		63E28AFF1B99C3B300FBF6E0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E28AFE1B99C3B300FBF6E0 /* LaunchScreen.xib */; };
 		C13BE75620BB1E7000C18529 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = C13BE75520BB1E6F00C18529 /* Podfile */; };
 		C1E8382520BB58410017B667 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8382420BB58410017B667 /* WeatherData.swift */; };
-		C1E8382720BB58610017B667 /* SeismicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8382620BB58610017B667 /* SeismicData.swift */; };
 		C1E8382A20BB590F0017B667 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8382920BB590F0017B667 /* ApiService.swift */; };
 		C1E8382C20BB5B360017B667 /* WindData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8382B20BB5B360017B667 /* WindData.swift */; };
 		C1E8382E20BB5BFD0017B667 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8382D20BB5BFD0017B667 /* LocationData.swift */; };
+		C1E8387920BC7B510017B667 /* app-launch-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C1E8387820BC7B510017B667 /* app-launch-icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,10 +38,10 @@
 		A24A798BCA9DA37E885B4146 /* Pods-Clima.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clima.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Clima/Pods-Clima.debug.xcconfig"; sourceTree = "<group>"; };
 		C13BE75520BB1E6F00C18529 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		C1E8382420BB58410017B667 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
-		C1E8382620BB58610017B667 /* SeismicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeismicData.swift; sourceTree = "<group>"; };
 		C1E8382920BB590F0017B667 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ApiService.swift; path = "Api Service/ApiService.swift"; sourceTree = "<group>"; };
 		C1E8382B20BB5B360017B667 /* WindData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WindData.swift; path = Models/WindData.swift; sourceTree = "<group>"; };
 		C1E8382D20BB5BFD0017B667 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationData.swift; path = Models/LocationData.swift; sourceTree = "<group>"; };
+		C1E8387820BC7B510017B667 /* app-launch-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app-launch-icon.png"; path = "Images.xcassets/app-launch-icon.imageset/app-launch-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +100,7 @@
 		63E28ACE1B99C32400FBF6E0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C1E8387820BC7B510017B667 /* app-launch-icon.png */,
 				63E28ACF1B99C32400FBF6E0 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -110,7 +111,6 @@
 			children = (
 				63E28AF01B99C35700FBF6E0 /* WeatherInfo.swift */,
 				C1E8382420BB58410017B667 /* WeatherData.swift */,
-				C1E8382620BB58610017B667 /* SeismicData.swift */,
 				C1E8382B20BB5B360017B667 /* WindData.swift */,
 				C1E8382D20BB5BFD0017B667 /* LocationData.swift */,
 			);
@@ -216,6 +216,7 @@
 			files = (
 				63E28AF71B99C36100FBF6E0 /* Images.xcassets in Resources */,
 				63E28AFF1B99C3B300FBF6E0 /* LaunchScreen.xib in Resources */,
+				C1E8387920BC7B510017B667 /* app-launch-icon.png in Resources */,
 				C13BE75620BB1E7000C18529 /* Podfile in Resources */,
 				63E28AF81B99C36100FBF6E0 /* Main.storyboard in Resources */,
 			);
@@ -276,7 +277,6 @@
 				C1E8382A20BB590F0017B667 /* ApiService.swift in Sources */,
 				63E28AF91B99C36100FBF6E0 /* WeatherViewController.swift in Sources */,
 				63E28AD11B99C32400FBF6E0 /* AppDelegate.swift in Sources */,
-				C1E8382720BB58610017B667 /* SeismicData.swift in Sources */,
 				63E28AF61B99C36100FBF6E0 /* ChangeCityViewController.swift in Sources */,
 				C1E8382520BB58410017B667 /* WeatherData.swift in Sources */,
 				C1E8382C20BB5B360017B667 /* WindData.swift in Sources */,
