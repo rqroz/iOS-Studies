@@ -6,7 +6,8 @@
 
 
 import UIKit
-
+import Firebase
+import SVProgressHUD
 
 class LogInViewController: UIViewController {
 
@@ -25,10 +26,26 @@ class LogInViewController: UIViewController {
 
    
     @IBAction func logInPressed(_ sender: AnyObject) {
-
+        SVProgressHUD.show()
         
-        //TODO: Log in the user
+        guard let email = emailTextfield.text, let password = passwordTextfield.text else {
+            print("Could not login.")
+            return
+        }
         
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            SVProgressHUD.dismiss()
+            
+            if error != nil {
+                // ERROR
+                print("Error while trying to log in. Description: \(error!.localizedDescription)")
+                SVProgressHUD.showError(withStatus: "Failed to log in. Please double check your credentials.")
+            }else{
+                // SUCCESS
+                print("Login successful")
+                self.performSegue(withIdentifier: "goToChat", sender: self)
+            }
+        }
         
     }
     
