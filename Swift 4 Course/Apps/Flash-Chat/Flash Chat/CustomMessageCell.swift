@@ -53,6 +53,7 @@ class CustomMessageCell: UITableViewCell {
         let l = UILabel()
         l.font = UIFont.systemFont(ofSize: 17)
         l.textColor = .white
+        l.numberOfLines = 0 
         return l
     }()
     
@@ -70,6 +71,7 @@ class CustomMessageCell: UITableViewCell {
         
         let iconSize = 1.5*DefaultSettings.standardIconSize
         
+        addConstraintsWithFormat(format: "V:|-8-[v0]-8-|", views: [messageBackgroundView])
         addConstraintsWithFormat(format: "V:|-8-[v0(\(iconSize))]", views: [userImageView])
         addConstraintsWithFormat(format: "H:|-8-[v0(\(iconSize))]-4-[v1]-8-|", views: [userImageView, messageBackgroundView])
     }

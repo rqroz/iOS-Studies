@@ -45,7 +45,7 @@ class RegisterViewController: UIViewController {
                 SVProgressHUD.showError(withStatus: "Failed to register. Please double check the information provided.")
             }else{
                 print("Registration successful.")
-                self.performSegue(withIdentifier: "goToChat", sender: self)
+                enterApp()
             }
         })
         

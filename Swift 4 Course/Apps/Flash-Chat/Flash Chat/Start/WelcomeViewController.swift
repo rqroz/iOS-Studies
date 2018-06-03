@@ -29,7 +29,7 @@ class WelcomeViewController: UIViewController {
         
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if user != nil {
-                self.performSegue(withIdentifier: "goToChat", sender: self)
+                enterApp()
             }
             
             self.registerButton.isEnabled = true

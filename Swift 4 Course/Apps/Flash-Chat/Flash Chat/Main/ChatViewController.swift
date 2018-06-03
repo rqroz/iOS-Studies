@@ -94,7 +94,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func updateTableViewCells() {
         messageTableView.rowHeight = UITableViewAutomaticDimension
-        messageTableView.estimatedRowHeight = 220.0
+        messageTableView.estimatedRowHeight = 120
     }
     
     @objc func tableViewTapped() {
@@ -120,6 +120,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             print("Could not retrieve messageTextField's text or user information...")
             return
         }
+        
+        if message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { return }
         
         messageTextfield.endEditing(true)
         messageTextfield.isEnabled = false
@@ -164,10 +166,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             
             let newMessage = Message(sender: sender, body: body)
-            self.messages.append(newMessage)
+            self.addMessage(message: newMessage)
             
-            self.updateTableViewCells()
-            self.messageTableView.reloadData()
             
             if self.atStart {
                 self.dismissBlackView()
@@ -176,12 +176,21 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    func addMessage(message: Message) {
+        self.messages.append(message)
+        
+        self.updateTableViewCells()
+        self.messageTableView.reloadData()
+        
+        let indexPath = IndexPath(item: messages.count - 1, section: 0)
+        self.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
     
     //MARK: - Log Out
     @IBAction func logOutPressed(_ sender: AnyObject) {
         do {
             try Auth.auth().signOut()
-            navigationController?.popToRootViewController(animated: true)
+            leaveApp()
         } catch let error {
             print("Could not log out. Description: \(error.localizedDescription)")
         }

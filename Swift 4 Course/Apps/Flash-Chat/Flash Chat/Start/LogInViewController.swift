@@ -44,7 +44,7 @@ class LogInViewController: UIViewController {
             }else{
                 // SUCCESS
                 print("Login successful")
-                self.performSegue(withIdentifier: "goToChat", sender: self)
+                enterApp()
             }
         }
         
