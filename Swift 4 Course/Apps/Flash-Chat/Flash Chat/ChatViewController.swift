@@ -11,7 +11,7 @@ import Firebase
 import SVProgressHUD
 
 class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    fileprivate let messagesDBIdentifier: String = "Messages"
+    fileprivate let messageCellId = "messageCellId"
     
     let blackView: UIView = {
         let v = UIView()
@@ -83,18 +83,18 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // Mark: - Table View Setup
     func setupTableView() {
-        messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "chatMessageCell")
+        messageTableView.register(CustomMessageCell.self, forCellReuseIdentifier: messageCellId)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
         messageTableView.addGestureRecognizer(tapGesture)
-        messageTableView.separatorStyle = .none
+//        messageTableView.separatorStyle = .none
         
         updateTableViewCells()
     }
     
     func updateTableViewCells() {
         messageTableView.rowHeight = UITableViewAutomaticDimension
-        messageTableView.estimatedRowHeight = 120.0
+        messageTableView.estimatedRowHeight = 220.0
     }
     
     @objc func tableViewTapped() {
@@ -107,7 +107,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "chatMessageCell", for: indexPath) as! CustomMessageCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: messageCellId, for: indexPath) as! CustomMessageCell
         
         cell.message = messages[indexPath.row]
         
@@ -125,7 +125,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         messageTextfield.isEnabled = false
         sendButton.isEnabled = false
         
-        let messagesDB = Database.database().reference().child(messagesDBIdentifier)
+        let messagesDB = Database.database().reference().child(DefaultSettings.messagesDBIdentifier)
         let messageDict = [
             "sender": user.email,
             "body": message
@@ -150,7 +150,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //MARK: - Database Observing
     func retrieveMessages() {
-        let messagesDB = Database.database().reference().child(messagesDBIdentifier)
+        let messagesDB = Database.database().reference().child(DefaultSettings.messagesDBIdentifier)
         
         messagesDB.observe(.childAdded) { (snapshot) in
             guard let snapshotDict = snapshot.value as? [String:String] else {

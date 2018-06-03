@@ -70,6 +70,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Welcome" id="qIL-hP-GCy"/>
                     <connections>
+                        <outlet property="loginButton" destination="rV4-Sa-2Rb" id="2Dh-iV-Koz"/>
+                        <outlet property="registerButton" destination="uWY-w2-6La" id="48z-7o-B12"/>
                         <segue destination="vXZ-lx-hvc" kind="push" identifier="goToChat" id="RuE-fI-2yI"/>
                     </connections>
                 </viewController>
@@ -358,6 +360,6 @@
         <image name="background1" width="1800" height="1192"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rRW-Qd-PQi"/>
+        <segue reference="RuE-fI-2yI"/>
     </inferredMetricsTieBreakers>
 </document>

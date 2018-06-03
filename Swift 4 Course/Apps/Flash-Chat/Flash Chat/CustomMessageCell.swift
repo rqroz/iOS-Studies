@@ -12,32 +12,81 @@ import ChameleonFramework
 
 class CustomMessageCell: UITableViewCell {
     
-    @IBOutlet var messageBackground: UIView!
-    @IBOutlet var avatarImageView: CachedImageView!
-    @IBOutlet var messageBody: UILabel!
-    @IBOutlet var senderUsername: UILabel!
-    
     var message: Message? {
         didSet {
-            senderUsername.text = message?.sender
+            usernameLabel.text = message?.sender
             messageBody.text = message?.body
-            avatarImageView.image = UIImage(named: "egg")
             
             if message?.sender == Auth.auth().currentUser?.email {
-                avatarImageView.backgroundColor = UIColor.flatMint()
-                messageBackground.backgroundColor = UIColor.flatSkyBlue()
+                messageBackgroundView.backgroundColor = UIColor.flatSkyBlue()
             } else {
-                avatarImageView.backgroundColor = UIColor.flatWatermelon()
-                messageBackground.backgroundColor = UIColor.flatGray()
+                messageBackgroundView.backgroundColor = UIColor.flatGray()
             }
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code goes here
+    let userImageView: CachedImageView = {
+        let iv = CachedImageView()
+        iv.loadImageWithString(imgString: "egg")
+        iv.contentMode = .scaleAspectFit
+        iv.clipsToBounds = true
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }()
+    
+    let messageBackgroundView: UIView = {
+        let v = UIView()
+        v.backgroundColor = .gray
+        v.layer.cornerRadius = 5
+        return v
+    }()
+    
+    let usernameLabel: UILabel = {
+        let l = UILabel()
+        l.font = UIFont.systemFont(ofSize: 12)
+        l.textColor = UIColor.flatWhite()
+        l.sizeToFit()
+        return l
+    }()
+    
+    let messageBody: UILabel = {
+        let l = UILabel()
+        l.font = UIFont.systemFont(ofSize: 17)
+        l.textColor = .white
+        return l
+    }()
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        contentMode = .scaleToFill
+        setupViews()
+    }
+    
+    
+    func setupViews(){
+        setupBackgroundView()
+        addSubview(userImageView)
+        
+        let iconSize = 1.5*DefaultSettings.standardIconSize
+        
+        addConstraintsWithFormat(format: "V:|-8-[v0(\(iconSize))]", views: [userImageView])
+        addConstraintsWithFormat(format: "H:|-8-[v0(\(iconSize))]-4-[v1]-8-|", views: [userImageView, messageBackgroundView])
+    }
+    
+    func setupBackgroundView(){
+        messageBackgroundView.addSubview(usernameLabel)
+        messageBackgroundView.addSubview(messageBody)
+        
+        messageBackgroundView.addConstraintsWithFormat(format: "V:|-8-[v0]-4-[v1]-8-|", views: [usernameLabel, messageBody])
+        messageBackgroundView.addConstraintsWithFormat(format: "H:|-8-[v0]-8-|", views: [usernameLabel])
+        messageBackgroundView.addConstraintsWithFormat(format: "H:|-8-[v0]-8-|", views: [messageBody])
+        
+        addSubview(messageBackgroundView)
     }
 
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

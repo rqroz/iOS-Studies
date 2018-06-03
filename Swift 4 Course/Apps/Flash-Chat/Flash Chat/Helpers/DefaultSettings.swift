@@ -11,4 +11,6 @@ import UIKit
 struct DefaultSettings {
     static let standardIconSize: CGFloat = 22
     static let imageCache = NSCache<AnyObject, AnyObject>()
+    
+    static let messagesDBIdentifier: String = "Messages"
 }

@@ -49,8 +49,4 @@ class LogInViewController: UIViewController {
         }
         
     }
-    
-
-
-    
 }  

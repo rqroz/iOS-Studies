@@ -19,6 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+//        Auth.auth().addStateDidChangeListener { (auth, user) in
+//            if let user = user {
+//                
+//            } else {
+//                
+//            }
+//        }
+        
         return true
     }
     
