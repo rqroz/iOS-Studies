@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6321A9C31B94EBA10053D2E7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6321A9C21B94EBA10053D2E7 /* Images.xcassets */; };
-		6321A9E21B94EBE70053D2E7 /* CustomMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6321A9DB1B94EBE70053D2E7 /* CustomMessageCell.swift */; };
+		6321A9E21B94EBE70053D2E7 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6321A9DB1B94EBE70053D2E7 /* ChatMessageCell.swift */; };
 		63E28B251B9A335300FBF6E0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E28B241B9A335300FBF6E0 /* Message.swift */; };
 		63E28B291B9A336600FBF6E0 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63E28B281B9A336600FBF6E0 /* Start.storyboard */; };
 		63E28B2F1B9A337600FBF6E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E28B2A1B9A337600FBF6E0 /* AppDelegate.swift */; };
@@ -25,6 +25,7 @@
 		C1E8388A20C4A9510017B667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1E8388920C4A9510017B667 /* Main.storyboard */; };
 		C1E8388D20C4A9D30017B667 /* AppTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8388C20C4A9D30017B667 /* AppTabBarViewController.swift */; };
 		C1E8388F20C4AA3E0017B667 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8388E20C4AA3E0017B667 /* Utility.swift */; };
+		C1E8389420C4BC220017B667 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8389320C4BC220017B667 /* ConfigurationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +34,7 @@
 		6321A9B61B94EBA10053D2E7 /* Flash Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flash Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6321A9BA1B94EBA10053D2E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6321A9C21B94EBA10053D2E7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6321A9DB1B94EBE70053D2E7 /* CustomMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMessageCell.swift; sourceTree = "<group>"; };
+		6321A9DB1B94EBE70053D2E7 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		63E28B241B9A335300FBF6E0 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		63E28B281B9A336600FBF6E0 /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
 		63E28B2A1B9A337600FBF6E0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +51,7 @@
 		C1E8388920C4A9510017B667 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		C1E8388C20C4A9D30017B667 /* AppTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarViewController.swift; sourceTree = "<group>"; };
 		C1E8388E20C4AA3E0017B667 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = Helpers/Utility.swift; sourceTree = "<group>"; };
+		C1E8389320C4BC220017B667 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +117,7 @@
 		6321A9E91B94EBEE0053D2E7 /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
-				6321A9DB1B94EBE70053D2E7 /* CustomMessageCell.swift */,
+				6321A9DB1B94EBE70053D2E7 /* ChatMessageCell.swift */,
 			);
 			name = "Custom Cell";
 			sourceTree = "<group>";
@@ -163,6 +165,7 @@
 			children = (
 				C1E8388C20C4A9D30017B667 /* AppTabBarViewController.swift */,
 				63E28B2B1B9A337600FBF6E0 /* ChatViewController.swift */,
+				C1E8389320C4BC220017B667 /* ConfigurationViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -327,7 +330,8 @@
 				C1E8388020C1E8D40017B667 /* DefaultSettings.swift in Sources */,
 				63E28B331B9A337600FBF6E0 /* WelcomeViewController.swift in Sources */,
 				63E28B251B9A335300FBF6E0 /* Message.swift in Sources */,
-				6321A9E21B94EBE70053D2E7 /* CustomMessageCell.swift in Sources */,
+				6321A9E21B94EBE70053D2E7 /* ChatMessageCell.swift in Sources */,
+				C1E8389420C4BC220017B667 /* ConfigurationViewController.swift in Sources */,
 				C1E8387C20C1E7DA0017B667 /* Extensions.swift in Sources */,
 				63E28B321B9A337600FBF6E0 /* RegisterViewController.swift in Sources */,
 				63E28B311B9A337600FBF6E0 /* LogInViewController.swift in Sources */,

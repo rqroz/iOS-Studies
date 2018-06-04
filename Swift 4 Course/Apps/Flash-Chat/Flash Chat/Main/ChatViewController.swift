@@ -62,6 +62,14 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     // MARK: - Observing keyboard appearance
+    func changeChatConstraints(keyboardHeight: CGFloat) {
+        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseInOut], animations: {
+            self.heightConstraint.constant = 50 + keyboardHeight
+            self.view.layoutIfNeeded()
+            self.scrollToBottom()
+        }, completion: nil)
+    }
+    
     @objc func keyboardWillShow(_ notification: Notification) {
         guard let keyboardFrame = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue else {
             print("Could not get keyboard frame to update constraints...")
@@ -74,20 +82,13 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         changeChatConstraints(keyboardHeight: 0)
     }
     
-    func changeChatConstraints(keyboardHeight: CGFloat) {
-        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseInOut], animations: {
-            self.heightConstraint.constant = 50 + keyboardHeight
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
-    
     // Mark: - Table View Setup
     func setupTableView() {
-        messageTableView.register(CustomMessageCell.self, forCellReuseIdentifier: messageCellId)
+        messageTableView.register(ChatMessageCell.self, forCellReuseIdentifier: messageCellId)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
         messageTableView.addGestureRecognizer(tapGesture)
-//        messageTableView.separatorStyle = .none
+        messageTableView.separatorStyle = .none
         
         updateTableViewCells()
     }
@@ -107,7 +108,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: messageCellId, for: indexPath) as! CustomMessageCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: messageCellId, for: indexPath) as! ChatMessageCell
         
         cell.message = messages[indexPath.row]
         
@@ -146,8 +147,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.sendButton.isEnabled = true
             }
         }
-        
-        
     }
     
     //MARK: - Database Observing
@@ -177,13 +176,18 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func addMessage(message: Message) {
-        self.messages.append(message)
+        messages.append(message)
         
-        self.updateTableViewCells()
-        self.messageTableView.reloadData()
-        
-        let indexPath = IndexPath(item: messages.count - 1, section: 0)
-        self.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        updateTableViewCells()
+        messageTableView.reloadData()
+        scrollToBottom()
+    }
+    
+    func scrollToBottom() {
+        if !messages.isEmpty {
+            let indexPath = IndexPath(item: messages.count - 1, section: 0)
+            self.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
     }
     
     //MARK: - Log Out

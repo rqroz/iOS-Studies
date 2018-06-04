@@ -1,5 +1,5 @@
 //
-//  CustomMessageCell.swift
+//  ChatMessageCell.swift
 //  Flash Chat
 //
 //  Created by Rodolfo Queiroz on 2018-06-01.
@@ -10,18 +10,20 @@ import UIKit
 import Firebase
 import ChameleonFramework
 
-class CustomMessageCell: UITableViewCell {
-    
+class ChatMessageCell: UITableViewCell {
     var message: Message? {
         didSet {
             usernameLabel.text = message?.sender
             messageBody.text = message?.body
             
-            if message?.sender == Auth.auth().currentUser?.email {
-                messageBackgroundView.backgroundColor = UIColor.flatSkyBlue()
-            } else {
+            let anotherUser = message?.sender != Auth.auth().currentUser?.email
+            if anotherUser {
                 messageBackgroundView.backgroundColor = UIColor.flatGray()
+            } else {
+                messageBackgroundView.backgroundColor = UIColor.flatSkyBlue()
             }
+            
+            setupViews(anotherUser: anotherUser)
         }
     }
     
@@ -57,23 +59,22 @@ class CustomMessageCell: UITableViewCell {
         return l
     }()
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    func setupViews(anotherUser: Bool){
+        subviews.forEach({ $0.removeFromSuperview() }) // Removes all the subviews in order to change the layout
         
-        contentMode = .scaleToFill
-        setupViews()
-    }
-    
-    
-    func setupViews(){
         setupBackgroundView()
         addSubview(userImageView)
         
-        let iconSize = 1.5*DefaultSettings.standardIconSize
+        let iconSize = 2*DefaultSettings.standardIconSize
         
         addConstraintsWithFormat(format: "V:|-8-[v0]-8-|", views: [messageBackgroundView])
         addConstraintsWithFormat(format: "V:|-8-[v0(\(iconSize))]", views: [userImageView])
-        addConstraintsWithFormat(format: "H:|-8-[v0(\(iconSize))]-4-[v1]-8-|", views: [userImageView, messageBackgroundView])
+        
+        if anotherUser { // Avatar on left
+            addConstraintsWithFormat(format: "H:|-8-[v0(\(iconSize))]-4-[v1]-8-|", views: [userImageView, messageBackgroundView])
+        } else { // Avatar on right
+            addConstraintsWithFormat(format: "H:|-8-[v0]-4-[v1(\(iconSize))]-8-|", views: [messageBackgroundView, userImageView])
+        }
     }
     
     func setupBackgroundView(){
@@ -85,10 +86,5 @@ class CustomMessageCell: UITableViewCell {
         messageBackgroundView.addConstraintsWithFormat(format: "H:|-8-[v0]-8-|", views: [messageBody])
         
         addSubview(messageBackgroundView)
-    }
-
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
