@@ -30,7 +30,6 @@ class AppTabBarViewController: UITabBarController {
             vc.tabBarItem = item
         }
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
