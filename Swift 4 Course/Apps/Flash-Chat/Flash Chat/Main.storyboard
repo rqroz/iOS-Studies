@@ -36,7 +36,7 @@
                                             <constraint firstAttribute="width" constant="46" id="3IV-Pz-uPp"/>
                                             <constraint firstAttribute="height" constant="30" id="n9m-q2-xxZ"/>
                                         </constraints>
-                                        <state key="normal" image="send-icon">
+                                        <state key="normal" image="rounded-arrow-right">
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -81,14 +81,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wqf-iq-gc7"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Flash Chat" id="3OH-iW-mo4">
-                        <barButtonItem key="rightBarButtonItem" image="off-icon" id="cyC-ux-vOn">
-                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <connections>
-                                <action selector="logOutPressed:" destination="qqW-LG-RLh" id="NmI-J6-1Rs"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Flash Chat" id="3OH-iW-mo4"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="heightConstraint" destination="Odi-kp-iU1" id="DEK-mp-BiS"/>
@@ -184,7 +177,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="off-icon" width="25" height="25"/>
-        <image name="send-icon" width="25" height="25"/>
+        <image name="rounded-arrow-right" width="25" height="25"/>
     </resources>
 </document>

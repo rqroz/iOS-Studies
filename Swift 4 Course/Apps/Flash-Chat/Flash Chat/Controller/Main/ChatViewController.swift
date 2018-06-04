@@ -89,6 +89,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableViewTapped))
         messageTableView.addGestureRecognizer(tapGesture)
         messageTableView.separatorStyle = .none
+        messageTableView.allowsSelection = false
         
         updateTableViewCells()
     }
@@ -187,16 +188,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if !messages.isEmpty {
             let indexPath = IndexPath(item: messages.count - 1, section: 0)
             self.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-        }
-    }
-    
-    //MARK: - Log Out
-    @IBAction func logOutPressed(_ sender: AnyObject) {
-        do {
-            try Auth.auth().signOut()
-            leaveApp()
-        } catch let error {
-            print("Could not log out. Description: \(error.localizedDescription)")
         }
     }
 

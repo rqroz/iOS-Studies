@@ -18,13 +18,15 @@
 		63E28B331B9A337600FBF6E0 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E28B2E1B9A337600FBF6E0 /* WelcomeViewController.swift */; };
 		63EBB3051D98004B004175E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63EBB3041D98004B004175E5 /* LaunchScreen.storyboard */; };
 		79AB7CA130B48AF10F7CD97A /* Pods_Flash_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB3D2A3867BEBF5AA37BB39 /* Pods_Flash_Chat.framework */; };
+		C10EBAEA20C4C68200472703 /* DefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10EBAE720C4C68100472703 /* DefaultSettings.swift */; };
+		C10EBAEB20C4C68200472703 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10EBAE820C4C68200472703 /* Extensions.swift */; };
+		C10EBAEC20C4C68200472703 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10EBAE920C4C68200472703 /* Utility.swift */; };
+		C10EBAEE20C4CA3100472703 /* ConfigurationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10EBAED20C4CA3100472703 /* ConfigurationCell.swift */; };
+		C10EBAF020C4CCF400472703 /* ConfigurationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10EBAEF20C4CCF400472703 /* ConfigurationItem.swift */; };
 		C1E8387720BBA09B0017B667 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1E8387620BBA09B0017B667 /* GoogleService-Info.plist */; };
-		C1E8387C20C1E7DA0017B667 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8387B20C1E7DA0017B667 /* Extensions.swift */; };
 		C1E8387E20C1E8430017B667 /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8387D20C1E8430017B667 /* CachedImageView.swift */; };
-		C1E8388020C1E8D40017B667 /* DefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8387F20C1E8D40017B667 /* DefaultSettings.swift */; };
 		C1E8388A20C4A9510017B667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1E8388920C4A9510017B667 /* Main.storyboard */; };
 		C1E8388D20C4A9D30017B667 /* AppTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8388C20C4A9D30017B667 /* AppTabBarViewController.swift */; };
-		C1E8388F20C4AA3E0017B667 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8388E20C4AA3E0017B667 /* Utility.swift */; };
 		C1E8389420C4BC220017B667 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8389320C4BC220017B667 /* ConfigurationViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,20 +39,22 @@
 		6321A9DB1B94EBE70053D2E7 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		63E28B241B9A335300FBF6E0 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		63E28B281B9A336600FBF6E0 /* Start.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Start.storyboard; sourceTree = "<group>"; };
-		63E28B2A1B9A337600FBF6E0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		63E28B2A1B9A337600FBF6E0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Flash Chat/AppDelegate.swift"; sourceTree = "<group>"; };
 		63E28B2B1B9A337600FBF6E0 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		63E28B2C1B9A337600FBF6E0 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		63E28B2D1B9A337600FBF6E0 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		63E28B2E1B9A337600FBF6E0 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		63EBB3041D98004B004175E5 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ../LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D67C0CD102AEE7AC10F739E /* Pods-Flash Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flash Chat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flash Chat/Pods-Flash Chat.debug.xcconfig"; sourceTree = "<group>"; };
+		C10EBAE720C4C68100472703 /* DefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultSettings.swift; path = "Flash Chat/Helpers/DefaultSettings.swift"; sourceTree = SOURCE_ROOT; };
+		C10EBAE820C4C68200472703 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "Flash Chat/Helpers/Extensions.swift"; sourceTree = SOURCE_ROOT; };
+		C10EBAE920C4C68200472703 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = "Flash Chat/Helpers/Utility.swift"; sourceTree = SOURCE_ROOT; };
+		C10EBAED20C4CA3100472703 /* ConfigurationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCell.swift; sourceTree = "<group>"; };
+		C10EBAEF20C4CCF400472703 /* ConfigurationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationItem.swift; sourceTree = "<group>"; };
 		C1E8387620BBA09B0017B667 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		C1E8387B20C1E7DA0017B667 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Helpers/Extensions.swift; sourceTree = "<group>"; };
-		C1E8387D20C1E8430017B667 /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CachedImageView.swift; path = Model/CachedImageView.swift; sourceTree = "<group>"; };
-		C1E8387F20C1E8D40017B667 /* DefaultSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DefaultSettings.swift; path = Helpers/DefaultSettings.swift; sourceTree = "<group>"; };
+		C1E8387D20C1E8430017B667 /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
 		C1E8388920C4A9510017B667 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		C1E8388C20C4A9D30017B667 /* AppTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBarViewController.swift; sourceTree = "<group>"; };
-		C1E8388E20C4AA3E0017B667 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = Helpers/Utility.swift; sourceTree = "<group>"; };
 		C1E8389320C4BC220017B667 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +81,7 @@
 		6321A9AD1B94EBA10053D2E7 = {
 			isa = PBXGroup;
 			children = (
+				63E28B2A1B9A337600FBF6E0 /* AppDelegate.swift */,
 				6321A9C21B94EBA10053D2E7 /* Images.xcassets */,
 				6321A9B81B94EBA10053D2E7 /* Flash Chat */,
 				6321A9B71B94EBA10053D2E7 /* Products */,
@@ -96,10 +101,11 @@
 		6321A9B81B94EBA10053D2E7 /* Flash Chat */ = {
 			isa = PBXGroup;
 			children = (
-				C1E8387A20C1E7900017B667 /* Helpers */,
-				6321A9EE1B94EC360053D2E7 /* Model */,
-				6321A9EB1B94EC170053D2E7 /* View */,
-				6321A9EA1B94EC0A0053D2E7 /* Controller */,
+				C10EBAE620C4C67400472703 /* Helpers */,
+				C17C4ABF20C4C183001FCADE /* Model */,
+				C1E8389220C4B1CC0017B667 /* Storyboards */,
+				C1E8389620C4C08A0017B667 /* View */,
+				C1E8389520C4C05B0017B667 /* Controller */,
 				6321A9B91B94EBA10053D2E7 /* Supporting Files */,
 			);
 			path = "Flash Chat";
@@ -114,50 +120,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6321A9E91B94EBEE0053D2E7 /* Custom Cell */ = {
+		C10EBAE620C4C67400472703 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				6321A9DB1B94EBE70053D2E7 /* ChatMessageCell.swift */,
+				C10EBAE720C4C68100472703 /* DefaultSettings.swift */,
+				C10EBAE820C4C68200472703 /* Extensions.swift */,
+				C10EBAE920C4C68200472703 /* Utility.swift */,
 			);
-			name = "Custom Cell";
+			name = Helpers;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
-		6321A9EA1B94EC0A0053D2E7 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				63E28B2A1B9A337600FBF6E0 /* AppDelegate.swift */,
-				C1E8389120C4AB170017B667 /* Start */,
-				C1E8388B20C4A99F0017B667 /* Main */,
-			);
-			name = Controller;
-			sourceTree = "<group>";
-		};
-		6321A9EB1B94EC170053D2E7 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C1E8387D20C1E8430017B667 /* CachedImageView.swift */,
-				6321A9E91B94EBEE0053D2E7 /* Custom Cell */,
-				C1E8389220C4B1CC0017B667 /* Storyboards */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		6321A9EE1B94EC360053D2E7 /* Model */ = {
+		C17C4ABF20C4C183001FCADE /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				63E28B241B9A335300FBF6E0 /* Message.swift */,
+				C10EBAEF20C4CCF400472703 /* ConfigurationItem.swift */,
 			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		C1E8387A20C1E7900017B667 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				C1E8387B20C1E7DA0017B667 /* Extensions.swift */,
-				C1E8387F20C1E8D40017B667 /* DefaultSettings.swift */,
-				C1E8388E20C4AA3E0017B667 /* Utility.swift */,
-			);
-			name = Helpers;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C1E8388B20C4A99F0017B667 /* Main */ = {
@@ -188,6 +168,33 @@
 				C1E8388920C4A9510017B667 /* Main.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		C1E8389520C4C05B0017B667 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C1E8389120C4AB170017B667 /* Start */,
+				C1E8388B20C4A99F0017B667 /* Main */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C1E8389620C4C08A0017B667 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C1E8387D20C1E8430017B667 /* CachedImageView.swift */,
+				C1F0035020C4C0FF00482CD7 /* TableViewCell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C1F0035020C4C0FF00482CD7 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				6321A9DB1B94EBE70053D2E7 /* ChatMessageCell.swift */,
+				C10EBAED20C4CA3100472703 /* ConfigurationCell.swift */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 		EC7426C78223A851857F7097 /* Pods */ = {
@@ -327,18 +334,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1E8388020C1E8D40017B667 /* DefaultSettings.swift in Sources */,
 				63E28B331B9A337600FBF6E0 /* WelcomeViewController.swift in Sources */,
 				63E28B251B9A335300FBF6E0 /* Message.swift in Sources */,
+				C10EBAF020C4CCF400472703 /* ConfigurationItem.swift in Sources */,
 				6321A9E21B94EBE70053D2E7 /* ChatMessageCell.swift in Sources */,
 				C1E8389420C4BC220017B667 /* ConfigurationViewController.swift in Sources */,
-				C1E8387C20C1E7DA0017B667 /* Extensions.swift in Sources */,
 				63E28B321B9A337600FBF6E0 /* RegisterViewController.swift in Sources */,
 				63E28B311B9A337600FBF6E0 /* LogInViewController.swift in Sources */,
 				C1E8388D20C4A9D30017B667 /* AppTabBarViewController.swift in Sources */,
-				C1E8388F20C4AA3E0017B667 /* Utility.swift in Sources */,
+				C10EBAEC20C4C68200472703 /* Utility.swift in Sources */,
+				C10EBAEE20C4CA3100472703 /* ConfigurationCell.swift in Sources */,
+				C10EBAEB20C4C68200472703 /* Extensions.swift in Sources */,
 				63E28B2F1B9A337600FBF6E0 /* AppDelegate.swift in Sources */,
 				C1E8387E20C1E8430017B667 /* CachedImageView.swift in Sources */,
+				C10EBAEA20C4C68200472703 /* DefaultSettings.swift in Sources */,
 				63E28B301B9A337600FBF6E0 /* ChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

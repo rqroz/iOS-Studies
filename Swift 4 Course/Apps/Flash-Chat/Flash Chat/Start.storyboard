@@ -69,10 +69,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Welcome" id="qIL-hP-GCy"/>
-                    <connections>
-                        <outlet property="loginButton" destination="rV4-Sa-2Rb" id="2Dh-iV-Koz"/>
-                        <outlet property="registerButton" destination="uWY-w2-6La" id="48z-7o-B12"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d1I-xB-PqX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
