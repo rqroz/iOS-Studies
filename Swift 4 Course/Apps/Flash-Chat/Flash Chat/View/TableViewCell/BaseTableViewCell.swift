@@ -9,16 +9,6 @@
 import UIKit
 
 class BaseTableViewCell: UITableViewCell {
-    let arrowImageView: CachedImageView = {
-        let iv = CachedImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.clipsToBounds = true
-        iv.loadImageWithString(imgString: "arrow-right", asTemplate: true)
-        iv.tintColor = UIColor.flatGray()
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        return iv
-    }()
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

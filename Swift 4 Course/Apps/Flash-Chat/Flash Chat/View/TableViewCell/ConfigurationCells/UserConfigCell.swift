@@ -7,8 +7,20 @@
 //
 
 import UIKit
+import Firebase
 
-class UserConfigCell: BaseTableViewCell {
+class UserConfigCell: BaseArrowCell {
+    
+    var user: User? {
+        didSet {
+            if user == nil { return }
+            
+            usernameLabel.text = user!.email
+            if let imgUrl = user!.photoURL {
+                userImageView.loadImageWithUrlString(urlString: imgUrl.absoluteString)
+            }
+        }
+    }
     
     let userImageView: CachedImageView = CachedImageView(localImageName: "default-user-icon", withBorder: true)
     

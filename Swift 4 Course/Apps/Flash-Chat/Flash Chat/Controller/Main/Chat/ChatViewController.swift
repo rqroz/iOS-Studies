@@ -31,7 +31,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        showBlackView()
+        //showBlackView()
         
         messageTableView.delegate = self
         messageTableView.dataSource = self
@@ -170,7 +170,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             
             if self.atStart {
-                self.dismissBlackView()
+                //self.dismissBlackView()
                 self.atStart = false
             }
         }

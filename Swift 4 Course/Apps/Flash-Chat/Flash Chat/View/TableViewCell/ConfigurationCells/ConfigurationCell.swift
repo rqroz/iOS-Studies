@@ -9,7 +9,7 @@
 import UIKit
 import ChameleonFramework
 
-class ConfigurationCell: BaseTableViewCell {
+class ConfigurationCell: BaseArrowCell {
     var configuration: ConfigurationItem? {
         didSet {
             if configuration != nil {

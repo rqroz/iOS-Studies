@@ -67,6 +67,7 @@ class ConfigurationViewController: UITableViewController {
         switch indexPath.section {
         case 0: // User Configuration Cell
             let userConfigCell = tableView.dequeueReusableCell(withIdentifier: userConfigCellID, for: indexPath) as! UserConfigCell
+            userConfigCell.user = Auth.auth().currentUser
             return userConfigCell
         default:
             let configCell = tableView.dequeueReusableCell(withIdentifier: generalConfigCellID, for: indexPath) as! ConfigurationCell
@@ -82,6 +83,7 @@ class ConfigurationViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0: // Go to User Configuration Handler Section
+            userConfigurationHandler()
             break
         case 1: // Go to General Configuration Handler Section
             generationConfigurationHandler(indexPath: indexPath)
@@ -95,6 +97,8 @@ class ConfigurationViewController: UITableViewController {
     //MARK: - USER CONFIGURATION SECTION HANDLER
     func userConfigurationHandler() {
         // TODO: go to user configuration view controller
+        let userVC = UserTableViewController(style: .plain)
+        navigationController?.pushViewController(userVC, animated: true)
     }
     
     //MARK: - GENERAL CONFIGURATION SECTION HANDLER
