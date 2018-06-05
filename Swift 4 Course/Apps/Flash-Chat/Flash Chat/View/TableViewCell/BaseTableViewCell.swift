@@ -12,6 +12,8 @@ class BaseTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        selectedBackgroundView = UIView() // Keeps the cell's background white upon selection/highlighting
+        
         setupViews()
     }
     
@@ -20,5 +22,4 @@ class BaseTableViewCell: UITableViewCell {
     }
     
     func setupViews() {} // To be implemented by children
-    
 }
