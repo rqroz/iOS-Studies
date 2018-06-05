@@ -23,6 +23,9 @@
 		C10EBAEC20C4C68200472703 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10EBAE920C4C68200472703 /* Utility.swift */; };
 		C10EBAEE20C4CA3100472703 /* ConfigurationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10EBAED20C4CA3100472703 /* ConfigurationCell.swift */; };
 		C10EBAF020C4CCF400472703 /* ConfigurationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10EBAEF20C4CCF400472703 /* ConfigurationItem.swift */; };
+		C1654AA420C6EA9200662D07 /* UserConfigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1654AA320C6EA9200662D07 /* UserConfigCell.swift */; };
+		C1654AA620C6F53300662D07 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1654AA520C6F53300662D07 /* BaseTableViewCell.swift */; };
+		C1654AA820C6F99C00662D07 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1654AA720C6F99C00662D07 /* UserViewController.swift */; };
 		C1E8387720BBA09B0017B667 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1E8387620BBA09B0017B667 /* GoogleService-Info.plist */; };
 		C1E8387E20C1E8430017B667 /* CachedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8387D20C1E8430017B667 /* CachedImageView.swift */; };
 		C1E8388A20C4A9510017B667 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1E8388920C4A9510017B667 /* Main.storyboard */; };
@@ -51,6 +54,9 @@
 		C10EBAE920C4C68200472703 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utility.swift; path = "Flash Chat/Helpers/Utility.swift"; sourceTree = SOURCE_ROOT; };
 		C10EBAED20C4CA3100472703 /* ConfigurationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCell.swift; sourceTree = "<group>"; };
 		C10EBAEF20C4CCF400472703 /* ConfigurationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationItem.swift; sourceTree = "<group>"; };
+		C1654AA320C6EA9200662D07 /* UserConfigCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConfigCell.swift; sourceTree = "<group>"; };
+		C1654AA520C6F53300662D07 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		C1654AA720C6F99C00662D07 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		C1E8387620BBA09B0017B667 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C1E8387D20C1E8430017B667 /* CachedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageView.swift; sourceTree = "<group>"; };
 		C1E8388920C4A9510017B667 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 				C1E8388C20C4A9D30017B667 /* AppTabBarViewController.swift */,
 				63E28B2B1B9A337600FBF6E0 /* ChatViewController.swift */,
 				C1E8389320C4BC220017B667 /* ConfigurationViewController.swift */,
+				C1654AA720C6F99C00662D07 /* UserViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -192,7 +199,9 @@
 			isa = PBXGroup;
 			children = (
 				6321A9DB1B94EBE70053D2E7 /* ChatMessageCell.swift */,
+				C1654AA520C6F53300662D07 /* BaseTableViewCell.swift */,
 				C10EBAED20C4CA3100472703 /* ConfigurationCell.swift */,
+				C1654AA320C6EA9200662D07 /* UserConfigCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -241,7 +250,7 @@
 				TargetAttributes = {
 					6321A9B51B94EBA10053D2E7 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = E6JBMLWDZA;
+						DevelopmentTeam = UBELP2YMQB;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -335,16 +344,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				63E28B331B9A337600FBF6E0 /* WelcomeViewController.swift in Sources */,
+				C1654AA820C6F99C00662D07 /* UserViewController.swift in Sources */,
 				63E28B251B9A335300FBF6E0 /* Message.swift in Sources */,
 				C10EBAF020C4CCF400472703 /* ConfigurationItem.swift in Sources */,
 				6321A9E21B94EBE70053D2E7 /* ChatMessageCell.swift in Sources */,
 				C1E8389420C4BC220017B667 /* ConfigurationViewController.swift in Sources */,
 				63E28B321B9A337600FBF6E0 /* RegisterViewController.swift in Sources */,
 				63E28B311B9A337600FBF6E0 /* LogInViewController.swift in Sources */,
+				C1654AA420C6EA9200662D07 /* UserConfigCell.swift in Sources */,
 				C1E8388D20C4A9D30017B667 /* AppTabBarViewController.swift in Sources */,
 				C10EBAEC20C4C68200472703 /* Utility.swift in Sources */,
 				C10EBAEE20C4CA3100472703 /* ConfigurationCell.swift in Sources */,
 				C10EBAEB20C4C68200472703 /* Extensions.swift in Sources */,
+				C1654AA620C6F53300662D07 /* BaseTableViewCell.swift in Sources */,
 				63E28B2F1B9A337600FBF6E0 /* AppDelegate.swift in Sources */,
 				C1E8387E20C1E8430017B667 /* CachedImageView.swift in Sources */,
 				C10EBAEA20C4C68200472703 /* DefaultSettings.swift in Sources */,
@@ -464,7 +476,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = E6JBMLWDZA;
+				DEVELOPMENT_TEAM = UBELP2YMQB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -472,7 +484,7 @@
 				INFOPLIST_FILE = "Flash Chat/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rqroz.Flash-Chat";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rqrozdev.Flash-Chat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -486,7 +498,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = E6JBMLWDZA;
+				DEVELOPMENT_TEAM = UBELP2YMQB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -494,7 +506,7 @@
 				INFOPLIST_FILE = "Flash Chat/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.rqroz.Flash-Chat";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rqrozdev.Flash-Chat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;

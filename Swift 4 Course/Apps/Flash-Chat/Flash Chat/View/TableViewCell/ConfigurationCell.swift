@@ -9,8 +9,7 @@
 import UIKit
 import ChameleonFramework
 
-class ConfigurationCell: UITableViewCell {
-    
+class ConfigurationCell: BaseTableViewCell {
     var configuration: ConfigurationItem? {
         didSet {
             if configuration != nil {
@@ -20,13 +19,7 @@ class ConfigurationCell: UITableViewCell {
         }
     }
 
-    let iconImageView: CachedImageView = {
-        let iv = CachedImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.clipsToBounds = true
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        return iv
-    }()
+    let iconImageView: CachedImageView = CachedImageView(localImageName: nil)
     
     let configurationLabel: UILabel = {
         let l = UILabel()
@@ -36,23 +29,7 @@ class ConfigurationCell: UITableViewCell {
         return l
     }()
     
-    let arrowImageView: CachedImageView = {
-        let iv = CachedImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.clipsToBounds = true
-        iv.loadImageWithString(imgString: "arrow-right", asTemplate: true)
-        iv.tintColor = UIColor.flatGray()
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        return iv
-    }()
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        setupViews()
-    }
-    
-    func setupViews() {
+    override func setupViews() {
         addSubview(iconImageView)
         addSubview(configurationLabel)
         addSubview(arrowImageView)
@@ -63,19 +40,15 @@ class ConfigurationCell: UITableViewCell {
         
         let iconSize = DefaultSettings.standardIconSize
         
-        addConstraintsWithFormat(format: "V:|-8-[v0]-8-[v1(0.5)]|", views: [configurationLabel, grayLine])
+        addConstraintsWithFormat(format: "V:|-12-[v0]-12-[v1(0.25)]|", views: [configurationLabel, grayLine])
         addConstraintsWithFormat(format: "V:[v0(\(iconSize))]", views: [iconImageView])
         addConstraintsWithFormat(format: "V:[v0(\(iconSize))]", views: [arrowImageView])
-        addConstraintsWithFormat(format: "H:|-8-[v0(\(iconSize))]-12-[v1]-12-[v2(\(iconSize))]-8-|", views: [iconImageView, configurationLabel, arrowImageView])
+        addConstraintsWithFormat(format: "H:|-12-[v0(\(iconSize))]-16-[v1]-12-[v2(\(iconSize))]-8-|", views: [iconImageView, configurationLabel, arrowImageView])
         
         addConstraintToItem(view: iconImageView, related: self, attribute: .centerY, multiplier: 1, constant: 0)
         addConstraintToItem(view: arrowImageView, related: self, attribute: .centerY, multiplier: 1, constant: 0)
         
-        addConstraintToItem(view: grayLine, related: configurationLabel, attribute: .left, multiplier: 1, constant: 0)
+        addConstraintToItem(view: grayLine, related: configurationLabel, attribute: .left, multiplier: 1, constant: -5)
         addConstraintToItem(view: grayLine, related: self, attribute: .right, multiplier: 1, constant: 0)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

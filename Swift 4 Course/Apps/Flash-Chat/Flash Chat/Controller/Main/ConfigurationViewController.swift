@@ -11,9 +11,11 @@ import Firebase
 import SVProgressHUD
 
 class ConfigurationViewController: UITableViewController {
-    private let configCellID = "configCellID"
+    private let userConfigCellID: String = "headerCellID"
+    private let generalConfigCellID: String = "configCellID"
     
     var configurationOptions: [ConfigurationItem] = []
+    let numberOfsections: Int = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,8 @@ class ConfigurationViewController: UITableViewController {
     
     // MARK: - Views Setup
     func setupTableView() {
-        tableView.register(ConfigurationCell.self, forCellReuseIdentifier: configCellID)
+        tableView.register(ConfigurationCell.self, forCellReuseIdentifier: generalConfigCellID)
+        tableView.register(UserConfigCell.self, forCellReuseIdentifier: userConfigCellID)
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
@@ -51,7 +54,7 @@ class ConfigurationViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return numberOfsections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,14 +64,41 @@ class ConfigurationViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: configCellID, for: indexPath) as! ConfigurationCell
-        
-        cell.configuration = configurationOptions[indexPath.row]
-        
-        return cell
+        switch indexPath.section {
+        case 0: // User Configuration Cell
+            let userConfigCell = tableView.dequeueReusableCell(withIdentifier: userConfigCellID, for: indexPath) as! UserConfigCell
+            return userConfigCell
+        default:
+            let configCell = tableView.dequeueReusableCell(withIdentifier: generalConfigCellID, for: indexPath) as! ConfigurationCell
+            configCell.configuration = configurationOptions[indexPath.row]
+            return configCell
+        }
     }
-
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return section == numberOfsections - 1 ? 0 : 30
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0: // Go to User Configuration Handler Section
+            break
+        case 1: // Go to General Configuration Handler Section
+            generationConfigurationHandler(indexPath: indexPath)
+            break
+        default:
+            break
+        }
+        
+    }
+    
+    //MARK: - USER CONFIGURATION SECTION HANDLER
+    func userConfigurationHandler() {
+        // TODO: go to user configuration view controller
+    }
+    
+    //MARK: - GENERAL CONFIGURATION SECTION HANDLER
+    func generationConfigurationHandler(indexPath: IndexPath) {
         switch configurationOptions[indexPath.row].text {
         case "Log out":
             logoutPressed()

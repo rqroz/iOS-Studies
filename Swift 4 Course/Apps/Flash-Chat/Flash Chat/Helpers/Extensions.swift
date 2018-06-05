@@ -32,3 +32,20 @@ extension UIView {
         self.layer.mask = mask
     }
 }
+
+extension CachedImageView {
+    convenience init(localImageName: String?, withBorder: Bool = false) {
+        self.init(image: nil)
+        self.clipsToBounds = true
+        self.contentMode = .scaleAspectFit
+        
+        if let imgName = localImageName {
+            self.loadImageWithString(imgString: imgName)
+        }
+        
+        if withBorder {
+            self.layer.borderColor = UIColor.black.cgColor
+            self.layer.borderWidth = 0.4
+        }
+    }
+}
