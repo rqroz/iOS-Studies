@@ -70,7 +70,7 @@ class UserTableViewController: UITableViewController {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: displayNameCellID, for: indexPath) as! DisplayNameCell
             
-            cell.displayName = user.email
+            cell.currentText = user.email
             
             return cell
         default:
@@ -82,7 +82,7 @@ class UserTableViewController: UITableViewController {
         switch indexPath.row {
         case 1:
             let cell = tableView.cellForRow(at: indexPath) as! DisplayNameCell
-            cell.textFieldView.enableTextField()
+            cell.enableTextField()
             enableEditingMode()
             break
         default:
@@ -126,19 +126,19 @@ class UserTableViewController: UITableViewController {
         case 1:
             let cell = tableView.cellForRow(at: indexPath) as! DisplayNameCell
             let canceled = (sender.tag == 0)
-            finishEditingDisplayName(onCell: cell, userCanceled: canceled)
+            finishEditingTextField(onCell: cell, userCanceled: canceled)
             break
         default:
             break
         }
     }
     
-    func finishEditingDisplayName(onCell cell: DisplayNameCell, userCanceled canceled: Bool) {
-        cell.textFieldView.disableTextField()
+    func finishEditingTextField(onCell cell: BaseTextFieldCell, userCanceled canceled: Bool) {
+        cell.disableTextField()
         disableEditingMode()
         if canceled {
             // Canceled, put back old displayName
-            cell.displayName = user.email
+            cell.currentText = user.email
         } else { // Done
             // TODO: Send POST request to Firebase to change user's displayName
             print("Should perform POST to update displayName...")

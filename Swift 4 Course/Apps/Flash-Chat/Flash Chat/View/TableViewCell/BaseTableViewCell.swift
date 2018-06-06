@@ -21,5 +21,7 @@ class BaseTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews() {} // To be implemented by children
+    func setupViews() {
+        fatalError("setupViews() must be implemented by children cell.")
+    }
 }

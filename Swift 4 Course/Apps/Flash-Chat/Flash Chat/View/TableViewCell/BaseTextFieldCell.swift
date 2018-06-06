@@ -12,6 +12,13 @@ import UIKit
 class BaseTextFieldCell: BaseTableViewCell {
     var maxCharachtersAllowed: Int = 30
     
+    var currentText: String? {
+        didSet {
+            textField.text = currentText
+            updateRightView()
+        }
+    }
+    
     let textField: BorderedTextField = {
         let tf = BorderedTextField()
         tf.setDefaults()
