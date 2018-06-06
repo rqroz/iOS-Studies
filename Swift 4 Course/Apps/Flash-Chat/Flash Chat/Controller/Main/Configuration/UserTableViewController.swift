@@ -82,7 +82,7 @@ class UserTableViewController: UITableViewController {
         switch indexPath.row {
         case 1:
             let cell = tableView.cellForRow(at: indexPath) as! DisplayNameCell
-            cell.enableTextField()
+            cell.textFieldView.enableTextField()
             enableEditingMode()
             break
         default:
@@ -134,7 +134,7 @@ class UserTableViewController: UITableViewController {
     }
     
     func finishEditingDisplayName(onCell cell: DisplayNameCell, userCanceled canceled: Bool) {
-        cell.disableTextField()
+        cell.textFieldView.disableTextField()
         disableEditingMode()
         if canceled {
             // Canceled, put back old displayName
