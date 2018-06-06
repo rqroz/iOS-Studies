@@ -14,8 +14,7 @@ class BaseTextFieldCell: BaseTableViewCell {
     
     var currentText: String? {
         didSet {
-            textField.text = currentText
-            updateRightView()
+            resetToCurrentText()
         }
     }
     
@@ -54,5 +53,10 @@ class BaseTextFieldCell: BaseTableViewCell {
         textField.isEnabled = false
         textField.removeBottomBorder()
         textField.resignFirstResponder()
+    }
+    
+    func resetToCurrentText() {
+        textField.text = currentText
+        updateRightView()
     }
 }

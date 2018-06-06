@@ -12,6 +12,7 @@ import Firebase
 class UserTableViewController: UITableViewController {
     let userImageCellID: String = "userImageCellID"
     let displayNameCellID: String = "displayNameCellID"
+    let statusCellID: String = "statusCellID"
     
     var user: User! {
         didSet {
@@ -19,7 +20,7 @@ class UserTableViewController: UITableViewController {
         }
     }
     
-    let numberOfRows: Int = 4
+    let numberOfRows: Int = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ class UserTableViewController: UITableViewController {
         }
         
         navigationItem.title = "Profile"
+        self.view.backgroundColor = UIColor.groupTableViewBackground
         
         setupTableView()
         user = authenticatedUser
@@ -40,6 +42,7 @@ class UserTableViewController: UITableViewController {
     func setupTableView() {
         tableView.register(UserImageCell.self, forCellReuseIdentifier: userImageCellID)
         tableView.register(DisplayNameCell.self, forCellReuseIdentifier: displayNameCellID)
+        tableView.register(StatusCell.self, forCellReuseIdentifier: statusCellID)
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
@@ -69,9 +72,11 @@ class UserTableViewController: UITableViewController {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: displayNameCellID, for: indexPath) as! DisplayNameCell
-            
             cell.currentText = user.email
-            
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: statusCellID) as! StatusCell
+            cell.currentText = "My status goes here"
             return cell
         default:
             return UITableViewCell()
@@ -79,14 +84,10 @@ class UserTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 1:
-            let cell = tableView.cellForRow(at: indexPath) as! DisplayNameCell
+        if indexPath.row > 0 { // If not image cell
+            let cell = tableView.cellForRow(at: indexPath) as! BaseTextFieldCell
             cell.enableTextField()
             enableEditingMode()
-            break
-        default:
-            break
         }
     }
     
@@ -122,26 +123,42 @@ class UserTableViewController: UITableViewController {
             return
         }
         
-        switch indexPath.row {
-        case 1:
-            let cell = tableView.cellForRow(at: indexPath) as! DisplayNameCell
+        if indexPath.row > 0 { // If not image cell
+            let cell = tableView.cellForRow(at: indexPath) as! BaseTextFieldCell
             let canceled = (sender.tag == 0)
             finishEditingTextField(onCell: cell, userCanceled: canceled)
-            break
-        default:
-            break
         }
     }
     
     func finishEditingTextField(onCell cell: BaseTextFieldCell, userCanceled canceled: Bool) {
         cell.disableTextField()
         disableEditingMode()
+        
         if canceled {
             // Canceled, put back old displayName
-            cell.currentText = user.email
+            cell.resetToCurrentText()
         } else { // Done
+            editionHandler(withCell: cell)
+        }
+    }
+    
+    func editionHandler(withCell cell: BaseTextFieldCell) {
+        guard let indexPath = tableView.indexPathForSelectedRow else {
+            print("editionHandler(withCell:) Could not resolve indexPath for selected row...")
+            return
+        }
+        
+        switch indexPath.row {
+        case 1: // User's Display Name Cell
             // TODO: Send POST request to Firebase to change user's displayName
             print("Should perform POST to update displayName...")
+            break
+        case 2: // User's Status Cell
+            // TODO: Send POST request to Firebase to change user's status
+            print("Should perform POST to update status...")
+            break
+        default:
+            break
         }
     }
 }
