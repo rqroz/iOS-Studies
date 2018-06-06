@@ -1,5 +1,5 @@
 //
-//  TextField.swift
+//  BorderedTextField.swift
 //  Flash Chat
 //
 //  Created by Rodolfo Queiroz on 2018-06-05.
@@ -8,8 +8,15 @@
 
 import UIKit
 
-extension UITextField {
-    //Adds a 1 point border to the bottom of a UITextField
+class BorderedTextField: UITextField {
+    private var border: CALayer?
+    
+    func setDefaults() {
+        self.autocorrectionType = .no
+        self.autocapitalizationType = .none
+        self.layer.masksToBounds = true
+    }
+    
     func addBottomBorder(color: UIColor? = nil){
         let border = CALayer()
         let borderWidth = CGFloat(1)
@@ -22,11 +29,11 @@ extension UITextField {
         border.borderWidth = borderWidth
         
         self.layer.addSublayer(border)
+        self.border = border
     }
     
-    func setDefaults() {
-        self.autocorrectionType = .no
-        self.autocapitalizationType = .none
-        self.layer.masksToBounds = true
+    func removeBottomBorder() {
+        self.border?.removeFromSuperlayer()
+        self.border = nil
     }
 }

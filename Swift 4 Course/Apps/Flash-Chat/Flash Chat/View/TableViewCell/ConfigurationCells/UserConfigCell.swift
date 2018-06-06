@@ -15,7 +15,7 @@ class UserConfigCell: BaseArrowCell {
         didSet {
             if user == nil { return }
             
-            usernameLabel.text = user!.email
+            displayNameLabel.text = user!.email
             if let imgUrl = user!.photoURL {
                 userImageView.loadImageWithUrlString(urlString: imgUrl.absoluteString)
             }
@@ -24,12 +24,12 @@ class UserConfigCell: BaseArrowCell {
     
     let userImageView: CachedImageView = CachedImageView(localImageName: "default-user-icon", withBorder: true)
     
-    let usernameLabel: UILabel = {
+    let displayNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.numberOfLines = 1
         label.textColor = .black
-        label.text = "Username Lastname"
+        label.text = "Display Name"
         return label
     }()
     
@@ -44,11 +44,11 @@ class UserConfigCell: BaseArrowCell {
     
     override func setupViews() {
         let containerView = UIView()
-        containerView.addSubview(usernameLabel)
+        containerView.addSubview(displayNameLabel)
         containerView.addSubview(statusLabel)
-        containerView.addConstraintsWithFormat(format: "H:|[v0]|", views: [usernameLabel])
+        containerView.addConstraintsWithFormat(format: "H:|[v0]|", views: [displayNameLabel])
         containerView.addConstraintsWithFormat(format: "H:|[v0]|", views: [statusLabel])
-        containerView.addConstraintsWithFormat(format: "V:|[v0]-8-[v1]|", views: [usernameLabel, statusLabel])
+        containerView.addConstraintsWithFormat(format: "V:|[v0]-8-[v1]|", views: [displayNameLabel, statusLabel])
         
         addSubview(containerView)
         addSubview(userImageView)

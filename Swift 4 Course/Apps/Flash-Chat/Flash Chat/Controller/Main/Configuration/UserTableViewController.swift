@@ -11,7 +11,7 @@ import Firebase
 
 class UserTableViewController: UITableViewController {
     let userImageCellID: String = "userImageCellID"
-    let usernameCellID: String = "usernameCellID"
+    let displayNameCellID: String = "displayNameCellID"
     
     var user: User! {
         didSet {
@@ -30,6 +30,8 @@ class UserTableViewController: UITableViewController {
             return
         }
         
+        navigationItem.title = "Profile"
+        
         setupTableView()
         user = authenticatedUser
     }
@@ -37,7 +39,7 @@ class UserTableViewController: UITableViewController {
     // MARK: - Views Setup
     func setupTableView() {
         tableView.register(UserImageCell.self, forCellReuseIdentifier: userImageCellID)
-        tableView.register(UsernameCell.self, forCellReuseIdentifier: usernameCellID)
+        tableView.register(DisplayNameCell.self, forCellReuseIdentifier: displayNameCellID)
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
@@ -66,9 +68,9 @@ class UserTableViewController: UITableViewController {
             
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: usernameCellID, for: indexPath) as! UsernameCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: displayNameCellID, for: indexPath) as! DisplayNameCell
             
-            cell.username = user.email
+            cell.displayName = user.email
             
             return cell
         default:
@@ -79,34 +81,67 @@ class UserTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 1:
-            let cell = tableView.cellForRow(at: indexPath) as! UsernameCell
+            let cell = tableView.cellForRow(at: indexPath) as! DisplayNameCell
             cell.enableTextField()
+            enableEditingMode()
             break
         default:
             break
         }
     }
     
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    // MARK: - Cell Editing
+    
+    // Adds the left and right barButtonItems to handle edition
+    func enableEditingMode() {
+        let cancelItem: UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(userFinishedEditing(_:)))
+        let doneItem: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(userFinishedEditing(_:)))
+        
+        // Tags will be used to recover which button was clicked in userFinishedEditing(_:)
+        cancelItem.tag = 0
+        doneItem.tag = 1
+        
+        navigationItem.hidesBackButton = true
+        
+        navigationItem.leftBarButtonItem = cancelItem
+        navigationItem.rightBarButtonItem = doneItem
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+     // Removes the left and right barButtonItems
+    func disableEditingMode() {
+        navigationItem.leftBarButtonItem = nil
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.hidesBackButton = false
     }
-    */
-
+    
+    // Handler for when editing is finished
+    @objc func userFinishedEditing(_ sender: UIBarButtonItem) {
+        guard let indexPath = tableView.indexPathForSelectedRow else {
+            print("Could not resolve indexPath for selected row...")
+            return
+        }
+        
+        switch indexPath.row {
+        case 1:
+            let cell = tableView.cellForRow(at: indexPath) as! DisplayNameCell
+            let canceled = (sender.tag == 0)
+            finishEditingDisplayName(onCell: cell, userCanceled: canceled)
+            break
+        default:
+            break
+        }
+    }
+    
+    func finishEditingDisplayName(onCell cell: DisplayNameCell, userCanceled canceled: Bool) {
+        cell.disableTextField()
+        disableEditingMode()
+        if canceled {
+            // Canceled, put back old displayName
+            cell.displayName = user.email
+        } else { // Done
+            // TODO: Send POST request to Firebase to change user's displayName
+            print("Should perform POST to update displayName...")
+        }
+    }
 }

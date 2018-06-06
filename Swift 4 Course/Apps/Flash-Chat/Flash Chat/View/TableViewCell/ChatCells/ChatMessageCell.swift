@@ -13,7 +13,7 @@ import ChameleonFramework
 class ChatMessageCell: UITableViewCell {
     var message: Message? {
         didSet {
-            usernameLabel.text = message?.sender
+            displayNameLabel.text = message?.sender
             messageBody.text = message?.body
             
             let anotherUser = message?.sender != Auth.auth().currentUser?.email
@@ -37,7 +37,7 @@ class ChatMessageCell: UITableViewCell {
         return v
     }()
     
-    let usernameLabel: UILabel = {
+    let displayNameLabel: UILabel = {
         let l = UILabel()
         l.font = UIFont.systemFont(ofSize: 12)
         l.textColor = UIColor.flatWhite()
@@ -75,11 +75,11 @@ class ChatMessageCell: UITableViewCell {
     }
     
     func setupBackgroundView(){
-        messageBackgroundView.addSubview(usernameLabel)
+        messageBackgroundView.addSubview(displayNameLabel)
         messageBackgroundView.addSubview(messageBody)
         
-        messageBackgroundView.addConstraintsWithFormat(format: "V:|-8-[v0]-4-[v1]-8-|", views: [usernameLabel, messageBody])
-        messageBackgroundView.addConstraintsWithFormat(format: "H:|-8-[v0]-8-|", views: [usernameLabel])
+        messageBackgroundView.addConstraintsWithFormat(format: "V:|-8-[v0]-4-[v1]-8-|", views: [displayNameLabel, messageBody])
+        messageBackgroundView.addConstraintsWithFormat(format: "H:|-8-[v0]-8-|", views: [displayNameLabel])
         messageBackgroundView.addConstraintsWithFormat(format: "H:|-8-[v0]-8-|", views: [messageBody])
         
         addSubview(messageBackgroundView)

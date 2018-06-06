@@ -1,5 +1,5 @@
 //
-//  UsernameCell.swift
+//  DisplayNameCell
 //  Flash Chat
 //
 //  Created by Rodolfo Queiroz on 2018-06-05.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-class UsernameCell: BaseTableViewCell {
-    var username: String? {
+class DisplayNameCell: BaseTableViewCell {
+    var displayName: String? {
         didSet {
-            textField.text = username
+            textField.text = displayName
             updateRightView()
         }
     }
     
-    private let textField: UITextField = {
-        let tf = UITextField()
+    private let textField: BorderedTextField = {
+        let tf = BorderedTextField()
         tf.setDefaults()
         tf.isEnabled = false
         tf.rightViewMode = .whileEditing
@@ -50,5 +50,11 @@ class UsernameCell: BaseTableViewCell {
         textField.isEnabled = true
         textField.addBottomBorder(color: .gray)
         textField.becomeFirstResponder()
+    }
+    
+    func disableTextField() {
+        textField.isEnabled = false
+        textField.removeBottomBorder()
+        textField.resignFirstResponder()
     }
 }
