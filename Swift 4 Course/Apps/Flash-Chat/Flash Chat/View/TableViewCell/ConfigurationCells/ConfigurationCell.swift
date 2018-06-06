@@ -9,7 +9,7 @@
 import UIKit
 import ChameleonFramework
 
-class ConfigurationCell: BaseArrowCell {
+class ConfigurationCell: BaseTableViewCell {
     var configuration: ConfigurationItem? {
         didSet {
             if configuration != nil {
@@ -32,7 +32,6 @@ class ConfigurationCell: BaseArrowCell {
     override func setupViews() {
         addSubview(iconImageView)
         addSubview(configurationLabel)
-        addSubview(arrowImageView)
         
         let grayLine = UIView()
         grayLine.backgroundColor = UIColor.flatGray()
@@ -42,13 +41,13 @@ class ConfigurationCell: BaseArrowCell {
         
         addConstraintsWithFormat(format: "V:|-12-[v0]-12-[v1(0.25)]|", views: [configurationLabel, grayLine])
         addConstraintsWithFormat(format: "V:[v0(\(iconSize))]", views: [iconImageView])
-        addConstraintsWithFormat(format: "V:[v0(\(iconSize))]", views: [arrowImageView])
-        addConstraintsWithFormat(format: "H:|-12-[v0(\(iconSize))]-16-[v1]-12-[v2(\(iconSize))]-8-|", views: [iconImageView, configurationLabel, arrowImageView])
+        addConstraintsWithFormat(format: "H:|-12-[v0(\(iconSize))]-16-[v1]-12-|", views: [iconImageView, configurationLabel])
         
         addConstraintToItem(view: iconImageView, related: self, attribute: .centerY, multiplier: 1, constant: 0)
-        addConstraintToItem(view: arrowImageView, related: self, attribute: .centerY, multiplier: 1, constant: 0)
         
         addConstraintToItem(view: grayLine, related: configurationLabel, attribute: .left, multiplier: 1, constant: -5)
         addConstraintToItem(view: grayLine, related: self, attribute: .right, multiplier: 1, constant: 0)
+
+        accessoryType = .disclosureIndicator
     }
 }

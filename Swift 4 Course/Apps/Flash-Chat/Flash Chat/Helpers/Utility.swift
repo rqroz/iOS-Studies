@@ -34,3 +34,7 @@ func enterApp() {
 func leaveApp() {
     changeStoryBoard(named: "Start")
 }
+
+func isiPhoneX() -> Bool {
+    return UIDevice.current.userInterfaceIdiom == .phone && UIScreen.main.nativeBounds.height == 2436
+}

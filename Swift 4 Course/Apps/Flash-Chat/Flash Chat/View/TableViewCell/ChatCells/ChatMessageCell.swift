@@ -60,16 +60,18 @@ class ChatMessageCell: UITableViewCell {
         addSubview(userImageView)
         
         let iconSize = 2*DefaultSettings.standardIconSize
+        let padding = iconSize + 2 * 14 // 14 = 8 + 6 (paddings used in horizontal constraints bellow)
+        
         userImageView.layer.cornerRadius = iconSize/2
         
         addConstraintsWithFormat(format: "V:|-8-[v0]-8-|", views: [messageBackgroundView])
         addConstraintsWithFormat(format: "V:|-8-[v0(\(iconSize))]", views: [userImageView])
         
         if anotherUser { // Avatar on left
-            addConstraintsWithFormat(format: "H:|-8-[v0(\(iconSize))]-6-[v1]-8-|", views: [userImageView, messageBackgroundView])
+            addConstraintsWithFormat(format: "H:|-8-[v0(\(iconSize))]-6-[v1]-\(padding)-|", views: [userImageView, messageBackgroundView])
             messageBackgroundView.backgroundColor = UIColor.flatNavyBlue()
         } else { // Avatar on right
-            addConstraintsWithFormat(format: "H:|-8-[v0]-6-[v1(\(iconSize))]-8-|", views: [messageBackgroundView, userImageView])
+            addConstraintsWithFormat(format: "H:|-\(padding)-[v0]-6-[v1(\(iconSize))]-8-|", views: [messageBackgroundView, userImageView])
             messageBackgroundView.backgroundColor = UIColor.flatBlack()
         }
     }

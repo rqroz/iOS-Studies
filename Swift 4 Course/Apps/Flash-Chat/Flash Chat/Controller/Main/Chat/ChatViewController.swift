@@ -90,6 +90,9 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         messageTableView.addGestureRecognizer(tapGesture)
         messageTableView.separatorStyle = .none
         messageTableView.allowsSelection = false
+        if #available(iOS 11.0, *) {
+            messageTableView.insetsContentViewsToSafeArea = true
+        }
         
         updateTableViewCells()
     }
