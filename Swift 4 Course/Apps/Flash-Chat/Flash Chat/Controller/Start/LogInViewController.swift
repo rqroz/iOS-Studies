@@ -27,7 +27,7 @@ class LogInViewController: UIViewController {
 
    
     @IBAction func logInPressed(_ sender: AnyObject) {
-        SVProgressHUD.show()
+        toggleLoader(state: .on)
         
         guard let email = emailTextfield.text, let password = passwordTextfield.text else {
             print("Could not login.")
@@ -35,7 +35,7 @@ class LogInViewController: UIViewController {
         }
         
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            SVProgressHUD.dismiss()
+            toggleLoader(state: .off)
             
             if error != nil {
                 // ERROR

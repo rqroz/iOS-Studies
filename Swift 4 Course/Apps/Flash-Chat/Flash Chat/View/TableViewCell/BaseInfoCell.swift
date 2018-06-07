@@ -30,6 +30,12 @@ class BaseInfoCell: BaseTableViewCell {
         return label
     }()
     
+    private var imageHeightConstraint: NSLayoutConstraint!
+    private var imageWidthConstraint: NSLayoutConstraint!
+    private let defaultTitleSize: CGFloat = 20
+    private let defaultDescriptionSize: CGFloat = 14
+    private let defaultImageSize: CGFloat = 3*DefaultSettings.standardIconSize
+    
     override func setupViews() {
         let containerView = UIView()
         containerView.addSubview(titleLabel)
@@ -41,16 +47,28 @@ class BaseInfoCell: BaseTableViewCell {
         addSubview(containerView)
         addSubview(cachedImageView)
         
-        let imgSize: CGFloat = 3*DefaultSettings.standardIconSize
-        cachedImageView.layer.cornerRadius = imgSize/2
-        
-        addConstraintsWithFormat(format: "H:|-12-[v0(\(imgSize))]-16-[v1]-12-|", views: [cachedImageView, containerView])
-        addConstraintsWithFormat(format: "V:|-[v0(\(imgSize))]-|", views: [cachedImageView])
+        addConstraintsWithFormat(format: "H:|-12-[v0]-16-[v1]-12-|", views: [cachedImageView, containerView])
+        addConstraintsWithFormat(format: "V:|-[v0]-|", views: [cachedImageView])
         
         
         addConstraintToItem(view: cachedImageView, related: self, attribute: .centerY, multiplier: 1, constant: 0)
         addConstraintToItem(view: containerView, related: self, attribute: .centerY, multiplier: 1, constant: 0)
         
         accessoryType = .disclosureIndicator
+        
+        cachedImageView.layer.cornerRadius = defaultImageSize/2
+        imageHeightConstraint = NSLayoutConstraint(item: cachedImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: defaultImageSize)
+        imageWidthConstraint = NSLayoutConstraint(item: cachedImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: defaultImageSize)
+        cachedImageView.addConstraints([imageWidthConstraint, imageHeightConstraint])
+    }
+    
+    func changeImageSize(to size: CGFloat) {
+        imageHeightConstraint?.constant = size
+        imageWidthConstraint?.constant = size
+        cachedImageView.layer.cornerRadius = size/2
+        
+        let ratio = size/defaultImageSize
+        titleLabel.font = UIFont.boldSystemFont(ofSize: defaultTitleSize*ratio)
+        descriptionLabel.font = UIFont.systemFont(ofSize: defaultDescriptionSize*ratio)
     }
 }

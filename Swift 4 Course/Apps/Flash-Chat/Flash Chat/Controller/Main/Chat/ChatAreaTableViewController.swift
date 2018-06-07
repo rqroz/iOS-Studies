@@ -14,7 +14,7 @@ class ChatAreaTableViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Chats"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.groupTableViewBackground
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,7 +24,6 @@ class ChatAreaTableViewController: BaseTableViewController {
 
     override func setupTableView() {
         super.setupTableView()
-        tableView.separatorStyle = .singleLine
         
         tableView.register(ChatCell.self, forCellReuseIdentifier: chatCellID)
     }

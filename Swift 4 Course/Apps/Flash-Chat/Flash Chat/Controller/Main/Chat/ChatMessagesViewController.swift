@@ -8,18 +8,12 @@
 
 import UIKit
 import Firebase
-import SVProgressHUD
+import ChameleonFramework
 
 class ChatMessagesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     fileprivate let messageCellId = "messageCellId"
     
-    let blackView: UIView = {
-        let v = UIView()
-        v.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        v.alpha = 0
-        v.translatesAutoresizingMaskIntoConstraints = false
-        return v
-    }()
+    private let numberOfMessagesToLoad: UInt = 5
     
     var messages: [Message] = []
     var atStart = true
@@ -33,7 +27,7 @@ class ChatMessagesViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = true
         
-        //showBlackView()
+        toggleLoader(state: .on)
         
         messageTableView.delegate = self
         messageTableView.dataSource = self
@@ -43,22 +37,8 @@ class ChatMessagesViewController: UIViewController, UITableViewDataSource, UITab
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         // Setting up table view
-        setupViews()
-        retrieveMessages()
-    }
-    
-    //MARK: - Setting up views
-    func setupViews(){
-        setupBlackView()
         setupTableView()
-    }
-    
-    func setupBlackView() {
-        view.addSubview(blackView)
-        view.addConstraintToItem(view: blackView, related: view, attribute: .top, multiplier: 1, constant: 0)
-        view.addConstraintToItem(view: blackView, related: view, attribute: .right, multiplier: 1, constant: 0)
-        view.addConstraintToItem(view: blackView, related: view, attribute: .left, multiplier: 1, constant: 0)
-        view.addConstraintToItem(view: blackView, related: view, attribute: .bottom, multiplier: 1, constant: 0)
+        retrieveMessages()
     }
     
     // MARK: - Observing keyboard appearance
@@ -92,6 +72,11 @@ class ChatMessagesViewController: UIViewController, UITableViewDataSource, UITab
         messageTableView.allowsSelection = false
         
         updateTableViewCells()
+        
+        
+        let refreshControl: UIRefreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(pullToRefreshHandler(_:)), for: .valueChanged)
+        messageTableView.addSubview(refreshControl)
     }
     
     func updateTableViewCells() {
@@ -170,7 +155,7 @@ class ChatMessagesViewController: UIViewController, UITableViewDataSource, UITab
             
             
             if self.atStart {
-                //self.dismissBlackView()
+                toggleLoader(state: .off)
                 self.atStart = false
             }
         }
@@ -178,9 +163,7 @@ class ChatMessagesViewController: UIViewController, UITableViewDataSource, UITab
     
     func addMessage(message: Message) {
         messages.append(message)
-        
-        updateTableViewCells()
-        messageTableView.reloadData()
+        messageTableView.insertRows(at: [IndexPath(row: messages.count-1, section: 0)], with: UITableViewRowAnimation.bottom)
         scrollToBottom()
     }
     
@@ -190,19 +173,9 @@ class ChatMessagesViewController: UIViewController, UITableViewDataSource, UITab
             self.messageTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
-
-    //MARK: - Loading Status with Black View
-    func dismissBlackView(){
-        UIView.animate(withDuration: 0.5) {
-            self.blackView.alpha = 0
-            SVProgressHUD.dismiss()
-        }
-    }
     
-    func showBlackView(){
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.blackView.alpha = 1
-            SVProgressHUD.show()
-        }, completion: nil)
+    @objc func pullToRefreshHandler(_ refreshControl: UIRefreshControl) {
+        //TODO
+        refreshControl.endRefreshing()
     }
 }

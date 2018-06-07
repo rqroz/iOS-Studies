@@ -94,30 +94,20 @@
             </objects>
             <point key="canvasLocation" x="4481" y="-860"/>
         </scene>
-        <!--Chat Area Table View Controller-->
+        <!--Chat-->
         <scene sceneID="EPG-G1-5b4">
             <objects>
-                <tableViewController id="aD7-j5-jiV" customClass="ChatAreaTableViewController" customModule="Flash_Chat" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Chat" id="aD7-j5-jiV" customClass="ChatAreaTableViewController" customModule="Flash_Chat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SIg-m6-WFg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="b2N-o5-VQa">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b2N-o5-VQa" id="MCs-bO-dra">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="aD7-j5-jiV" id="Nk3-u2-Psk"/>
                             <outlet property="delegate" destination="aD7-j5-jiV" id="Knx-lZ-JD0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="xZt-x4-YaU"/>
+                    <navigationItem key="navigationItem" title="Chats" id="xZt-x4-YaU"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sYG-lF-lP4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -30,7 +30,7 @@ class RegisterViewController: UIViewController {
 
   
     @IBAction func registerPressed(_ sender: AnyObject) {
-        SVProgressHUD.show()
+        toggleLoader(state: .on)
         
         guard let email = emailTextfield.text, let password = passwordTextfield.text else {
             print("Could not resolve email or password...")
@@ -38,7 +38,7 @@ class RegisterViewController: UIViewController {
         }
         
         Auth.auth().createUser(withEmail: email, password: password, completion: { (result, error) in
-            SVProgressHUD.dismiss()
+            toggleLoader(state: .off)
             
             if error != nil {
                 print("Registartion failed. Description: \(error!.localizedDescription)")

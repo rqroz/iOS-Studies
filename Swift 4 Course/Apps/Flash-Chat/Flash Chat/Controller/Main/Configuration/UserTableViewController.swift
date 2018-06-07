@@ -137,22 +137,26 @@ class UserTableViewController: BaseTableViewController {
     }
     
     func editionHandler(withCell cell: BaseTextFieldCell) {
-        guard let indexPath = tableView.indexPathForSelectedRow else {
-            print("editionHandler(withCell:) Could not resolve indexPath for selected row...")
+        guard let indexPath = tableView.indexPathForSelectedRow, let text = cell.textField.text else {
+            print("editionHandler(withCell:) Could not resolve indexPath for selected row or text from BaseTextFieldCell...")
             return
         }
         
-        switch indexPath.row {
-        case 1: // User's Display Name Cell
-            // TODO: Send POST request to Firebase to change user's displayName
-            print("Should perform POST to update displayName...")
-            break
-        case 2: // User's Status Cell
-            // TODO: Send POST request to Firebase to change user's status
-            print("Should perform POST to update status...")
-            break
-        default:
-            break
+        if text.isEmpty {
+            cell.resetToCurrentText()
+        } else {
+            switch indexPath.row {
+            case 1: // User's Display Name Cell
+                // TODO: Send POST request to Firebase to change user's displayName
+                print("Should perform POST to update displayName...")
+                break
+            case 2: // User's Status Cell
+                // TODO: Send POST request to Firebase to change user's status
+                print("Should perform POST to update status...")
+                break
+            default:
+                break
+            }
         }
     }
 }

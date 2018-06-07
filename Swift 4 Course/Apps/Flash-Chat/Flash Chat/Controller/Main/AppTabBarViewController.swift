@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 private enum TabIcons: String {
     case chat = "chat-icon"
@@ -14,7 +15,7 @@ private enum TabIcons: String {
 }
 
 class AppTabBarViewController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,10 +31,4 @@ class AppTabBarViewController: UITabBarController {
             vc.tabBarItem = item
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
