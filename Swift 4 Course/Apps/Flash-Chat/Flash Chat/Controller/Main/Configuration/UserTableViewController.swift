@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class UserTableViewController: UITableViewController {
+class UserTableViewController: BaseTableViewController {
     let userImageCellID: String = "userImageCellID"
     let displayNameCellID: String = "displayNameCellID"
     let statusCellID: String = "statusCellID"
@@ -32,21 +32,15 @@ class UserTableViewController: UITableViewController {
         }
         
         navigationItem.title = "Profile"
-        self.view.backgroundColor = UIColor.groupTableViewBackground
-        
-        setupTableView()
         user = authenticatedUser
     }
 
     // MARK: - Views Setup
-    func setupTableView() {
+    override func setupTableView() {
+        super.setupTableView()
         tableView.register(UserImageCell.self, forCellReuseIdentifier: userImageCellID)
         tableView.register(DisplayNameCell.self, forCellReuseIdentifier: displayNameCellID)
         tableView.register(StatusCell.self, forCellReuseIdentifier: statusCellID)
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 120
-        tableView.separatorStyle = .none
     }
 
     // MARK: - Table view data source

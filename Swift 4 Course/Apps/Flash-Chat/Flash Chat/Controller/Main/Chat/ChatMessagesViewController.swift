@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SVProgressHUD
 
-class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ChatMessagesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     fileprivate let messageCellId = "messageCellId"
     
     let blackView: UIView = {
@@ -31,12 +31,12 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.isHidden = true
+        
         //showBlackView()
         
         messageTableView.delegate = self
         messageTableView.dataSource = self
-        
-        //TODO: Set the tapGesture here:
         
         // Observers to update view constraints on keyboard appearance
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -90,9 +90,6 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         messageTableView.addGestureRecognizer(tapGesture)
         messageTableView.separatorStyle = .none
         messageTableView.allowsSelection = false
-        if #available(iOS 11.0, *) {
-            messageTableView.insetsContentViewsToSafeArea = true
-        }
         
         updateTableViewCells()
     }

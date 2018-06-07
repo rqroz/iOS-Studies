@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SVProgressHUD
 
-class ConfigurationViewController: UITableViewController {
+class ConfigurationViewController: BaseTableViewController {
     private let userConfigCellID: String = "headerCellID"
     private let generalConfigCellID: String = "configCellID"
     
@@ -20,18 +20,14 @@ class ConfigurationViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupTableView()
         setupConfigurationOptions()
     }
     
     // MARK: - Views Setup
-    func setupTableView() {
+    override func setupTableView() {
+        super.setupTableView()
         tableView.register(ConfigurationCell.self, forCellReuseIdentifier: generalConfigCellID)
         tableView.register(UserConfigCell.self, forCellReuseIdentifier: userConfigCellID)
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 120
-        tableView.separatorStyle = .none
     }
     
     // MARK: - Configuration Data Setup

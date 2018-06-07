@@ -9,62 +9,15 @@
 import UIKit
 import Firebase
 
-class UserConfigCell: BaseArrowCell {
-    
+class UserConfigCell: BaseInfoCell {    
     var user: User? {
         didSet {
             if user == nil { return }
             
-            displayNameLabel.text = user!.email
+            titleLabel.text = user!.email
             if let imgUrl = user!.photoURL {
-                userImageView.loadImageWithUrlString(urlString: imgUrl.absoluteString)
+                cachedImageView.loadImageWithUrlString(urlString: imgUrl.absoluteString)
             }
         }
-    }
-    
-    let userImageView: CachedImageView = CachedImageView(localImageName: "default-user-icon", withBorder: true)
-    
-    let displayNameLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.numberOfLines = 1
-        label.textColor = .black
-        label.text = "Display Name"
-        return label
-    }()
-    
-    let statusLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.numberOfLines = 1
-        label.textColor = .lightGray
-        label.text = "My status goes here"
-        return label
-    }()
-    
-    override func setupViews() {
-        let containerView = UIView()
-        containerView.addSubview(displayNameLabel)
-        containerView.addSubview(statusLabel)
-        containerView.addConstraintsWithFormat(format: "H:|[v0]|", views: [displayNameLabel])
-        containerView.addConstraintsWithFormat(format: "H:|[v0]|", views: [statusLabel])
-        containerView.addConstraintsWithFormat(format: "V:|[v0]-8-[v1]|", views: [displayNameLabel, statusLabel])
-        
-        addSubview(containerView)
-        addSubview(userImageView)
-        addSubview(arrowImageView)
-        
-        let imgSize: CGFloat = 3*DefaultSettings.standardIconSize
-        userImageView.layer.cornerRadius = imgSize/2
-        
-        let arrowSize: CGFloat = 1.5*DefaultSettings.standardIconSize
-        
-        addConstraintsWithFormat(format: "H:|-12-[v0(\(imgSize))]-16-[v1]-12-[v2(\(arrowSize))]-4-|", views: [userImageView, containerView, arrowImageView])
-        addConstraintsWithFormat(format: "V:|-[v0(\(imgSize))]-|", views: [userImageView])
-        
-        
-        addConstraintToItem(view: userImageView, related: self, attribute: .centerY, multiplier: 1, constant: 0)
-        addConstraintToItem(view: containerView, related: self, attribute: .centerY, multiplier: 1, constant: 0)
-        addConstraintToItem(view: arrowImageView, related: self, attribute: .centerY, multiplier: 1, constant: 0)
     }
 }
