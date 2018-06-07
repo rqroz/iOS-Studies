@@ -19,7 +19,7 @@ class StatusCell: BaseTextFieldCell {
     
     override func setupViews() {
         super.setupViews()
-        maxCharachtersAllowed = 50
+        maxCharachtersAllowed = 40
         
         let separatorView = UIView()
         separatorView.backgroundColor = UIColor.groupTableViewBackground
@@ -33,7 +33,5 @@ class StatusCell: BaseTextFieldCell {
         addConstraintsWithFormat(format: "H:|[v0]|", views: [separatorView])
         addConstraintsWithFormat(format: "H:|-22-[v0]-22-|", views: [textField])
         addConstraintsWithFormat(format: "V:|-[v0(40)]-12-[v1]-12-|", views: [separatorView, textField])
-        
-//        selectedBackgroundView?.backgroundColor = UIColor.clear
     }
 }

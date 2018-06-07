@@ -9,7 +9,7 @@
 
 import UIKit
 
-class BaseTextFieldCell: BaseTableViewCell {
+class BaseTextFieldCell: BaseTableViewCell, UITextFieldDelegate {
     var maxCharachtersAllowed: Int = 30
     
     var currentText: String? {
@@ -34,6 +34,7 @@ class BaseTextFieldCell: BaseTableViewCell {
     
     override func setupViews() {
         addSubview(textField)
+        textField.delegate = self
         textField.rightView = rightTextFieldView
         textField.addTarget(self, action: #selector(updateRightView), for: .editingChanged)
     }
@@ -59,4 +60,13 @@ class BaseTextFieldCell: BaseTableViewCell {
         textField.text = currentText
         updateRightView()
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let charCount = textField.text?.count ?? 0
+        if range.length + range.location > charCount { return false }
+        
+        let newCount = charCount + string.count - range.length
+        return newCount <= maxCharachtersAllowed
+    }
 }
+
